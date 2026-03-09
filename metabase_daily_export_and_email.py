@@ -21,7 +21,7 @@ FROM_EMAIL = os.getenv("FROM_EMAIL")
 TO_EMAIL = os.getenv("TO_EMAIL")
 CC_EMAIL = os.getenv("CC_EMAIL", "")
 
-CARD_IDS = [8266, 8267]
+CARD_IDS = [8964, 8965]
 CARD_PARAMS = {}
 VERIFY_SSL = True
 
