@@ -3,10 +3,7 @@ name: VI Daily Reports
 # 06:00 IST = 00:30 UTC
 on:
   schedule:
-    # 06:00 IST = 00:30 UTC (same calendar day)
-    - cron: "30 22 * * *" 
-    # or 05:30 IST = 00:00 UTC
-    # - cron: "0 0 * * *"
+    - cron: "30 22 * * *"  # 4:00 AM IST = 10:30 PM UTC (previous day)
   workflow_dispatch: {}
 
 concurrency:
