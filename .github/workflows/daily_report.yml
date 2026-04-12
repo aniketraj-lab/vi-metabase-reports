@@ -42,5 +42,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-      - name: Run daily Metabase export
-        run: python -u metabase_daily_export_and_email.py
+- name: Run daily Metabase export
+        run: |
+          for i in 1 2 3; do
+            python -u metabase_daily_export_and_email.py && break
+            echo "Attempt $i failed, retrying in 60 seconds..."
+            sleep 60
+          done
