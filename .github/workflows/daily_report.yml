@@ -1,6 +1,5 @@
 name: VI Daily Reports
 
-# 06:00 IST = 00:30 UTC
 on:
   schedule:
     - cron: "30 22 * * *"  # 4:00 AM IST = 10:30 PM UTC (previous day)
@@ -17,13 +16,10 @@ jobs:
     env:
       METABASE_SITE: ${{ secrets.METABASE_SITE }}
       METABASE_API_KEY: ${{ secrets.METABASE_API_KEY }}
-
       SMTP_HOST: ${{ secrets.SMTP_HOST }}
       SMTP_PORT: ${{ secrets.SMTP_PORT }}
       SMTP_USER: ${{ secrets.SMTP_USER }}
       SMTP_PASS: ${{ secrets.SMTP_PASS }}
-
-      # Email setup
       FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
       TO_EMAIL: ${{ secrets.TO_EMAIL }}
       CC_EMAIL: ${{ secrets.CC_EMAIL }}
@@ -42,7 +38,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests
 
-- name: Run daily Metabase export
+      - name: Run daily Metabase export
         run: |
           for i in 1 2 3; do
             python -u metabase_daily_export_and_email.py && break
