@@ -9,6 +9,9 @@ concurrency:
   group: vi-daily-reports
   cancel-in-progress: true
 
+permissions:
+  contents: write
+
 jobs:
   run-report:
     runs-on: ubuntu-latest
@@ -45,3 +48,10 @@ jobs:
             echo "Attempt $i failed, retrying in 60 seconds..."
             sleep 60
           done
+
+      - name: Keep alive
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git commit --allow-empty -m "Keep alive"
+          git push
